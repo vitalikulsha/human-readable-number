@@ -29,6 +29,9 @@ module.exports = function toReadable (number) {
         nums += numsFromZeroToNine[number];
         break;
     }
+    if(number === 0 || res === 1){
+      break;
+    } 
   }      
   return nums.trim();
 }
