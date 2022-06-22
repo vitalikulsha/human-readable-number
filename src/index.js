@@ -30,5 +30,5 @@ module.exports = function toReadable (number) {
         break;
     } 
   }      
-  return nums;
+  return nums.trim();
 }
