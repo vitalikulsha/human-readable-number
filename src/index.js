@@ -28,7 +28,10 @@ module.exports = function toReadable (number) {
       case 1:
         nums += numsFromZeroToNine[number];
         break;
-    } 
+    }
+    if(number < 20){
+      break;
+    }
   }      
   return nums.trim();
 }
