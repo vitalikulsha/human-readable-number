@@ -5,34 +5,33 @@ module.exports = function toReadable (number) {
   const numsFromZeroToNine = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
   const numsFromTenToNineteen = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
   const numsTens = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-  const count = String(number).length;
-  let res = 0, 
-      nums = '';      
-  for(let i = count; i > 0; i--){
-    switch(i){
+  let count = 1, res = 0, nums = '';  
+  do {
+    count = String(number).length;
+    switch(count){
       case 3:
         res = Math.trunc(number / 100);
         nums += numsFromZeroToNine[res] + ' hundred ';
         number -= res * 100;
-        res = 0;
         break;
       case 2:
         res = Math.trunc(number / 10);
         if(res === 1){
           nums += numsFromTenToNineteen[number - 10];
-          break;
+          count = 0;
         } else {
           nums += numsTens[res - 2] + ' ';
-        }
-        number -= res * 10;
+          number -= res * 10;
+        }        
         break;
       case 1:
         nums += numsFromZeroToNine[number];
+        count = 0;
         break;
     }
-    if(!number || res === 1){
+    if(!number){
       break;
-    } 
-  }      
+    }
+  } while(count > 0);
   return nums.trim();
 }
