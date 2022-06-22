@@ -1,5 +1,5 @@
 module.exports = function toReadable (number) {
-       if(number < 0 || number >= 1000){
+  if(number < 0 || number >= 1000){
     return 'The number '+ number +' is out of bounds!';
   }
   const numsFromZeroToNine = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
@@ -12,8 +12,9 @@ module.exports = function toReadable (number) {
     switch(i){
       case 3:
         res = Math.trunc(number / 100);
-        nums += res + ' ';
+        nums += numsFromZeroToNine[res] + ' hundred ';
         number -= res * 100;
+        res = 0;
         break;
       case 2:
         res = Math.trunc(number / 10);
@@ -29,7 +30,7 @@ module.exports = function toReadable (number) {
         nums += numsFromZeroToNine[number];
         break;
     }
-    if(number === 0 || res === 1){
+    if(!number || res === 1){
       break;
     } 
   }      
